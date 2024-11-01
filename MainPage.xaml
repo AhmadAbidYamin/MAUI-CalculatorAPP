@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Calculator.MainPage"
+             
+             Shell.BackgroundColor="LightBlue"
+             Shell.ForegroundColor="Black">
+    <!-- Toolbari ekstra olarak ekledim (calismiyor) -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Secondary"
+                     Text="History"/>
+        <ToolbarItem Order="Secondary"
+                     Text="Choose theme" />
+        <ToolbarItem Order="Secondary"
+                     Text="Privacy Policy" />
+        <ToolbarItem Order="Secondary"
+                     Text="Send feedback" />
+        <ToolbarItem Order="Secondary"
+                     Text="Help" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <Style x:Key="BaseCalculatorButtonStyle"
+               TargetType="Button">
+            <Setter Property="WidthRequest"
+                    Value="80" />
+            <Setter Property="HeightRequest"
+                    Value="80" />
+            <Setter Property="CornerRadius"
+                    Value="40" />
+            <Setter Property="TextColor"
+                    Value="Black" />
+            <Setter Property="FontSize"
+                    Value="32" />
+            <Setter Property="FontAttributes"
+                    Value="Bold" />
+        </Style>
+        <Style x:Key="NumerButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource BaseCalculatorButtonStyle}">
+            <Setter Property="BackgroundColor"
+                    Value="LightBlue" />
+            <Setter Property="TextColor"
+                    Value="DarkSlateGray" />
+
+        </Style>
+        <Style x:Key="OperatorButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource BaseCalculatorButtonStyle}">
+            <Setter Property="BackgroundColor"
+                    Value="DarkSlateBlue" />
+            <Setter Property="FontSize"
+                    Value="40"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="200,*">
+        <Border StrokeShape="RoundRectangle 0 0 25 25"
+                Stroke="Transparent"
+                Background="LightBlue">
+            <VerticalStackLayout>
+                <Label x:Name="DisplayLabel"
+                      Text="0"
+                      HorizontalTextAlignment="End"
+                      FontSize="50"
+                      VerticalOptions="End"
+                      Margin="10" />
+            </VerticalStackLayout>
+        </Border>
+        <Grid Grid.Row="1"
+              Padding="12"
+            RowDefinitions="*,*,*,*,*"
+            ColumnDefinitions="*,*,*,*">
+
+            <Button Grid.Row="0"
+                    Grid.Column="0" 
+                    FontSize="35"
+                    Clicked="OnClearClicked"
+                    BackgroundColor="LightGreen"
+                   Style="{StaticResource OperatorButtonStyle}"
+                    Text="AC"/>
+            <Button Grid.Row="0"
+                    Grid.Column="1"
+                    Clicked="OnOperatorClicked"
+                    Style="{StaticResource OperatorButtonStyle}"
+                    Text="(  )" />
+            <Button Grid.Row="0"
+                    Grid.Column="2"
+                    Clicked="OnOperatorClicked"
+                    Style="{StaticResource OperatorButtonStyle}"
+                    Text="%" />
+            <Button Grid.Row="0"
+                    Grid.Column="3"
+                    Clicked="OnOperatorClicked"
+                    Style="{StaticResource OperatorButtonStyle}"
+                    Text="/" />
+            <Button Grid.Row="1"
+                    Grid.Column="0"
+                    Clicked="OnNumberClicked"
+                    Style="{StaticResource NumerButtonStyle}"
+                    Text="7" />
+            <Button Grid.Row="1"
+                    Grid.Column="1"
+                    Clicked="OnNumberClicked"
+                    Style="{StaticResource NumerButtonStyle}"
+                    Text="8" />
+            <Button Grid.Row="1"
+                    Grid.Column="2"
+                    Clicked="OnNumberClicked"
+                    Style="{StaticResource NumerButtonStyle}"
+                    Text="9" />
+            <Button Grid.Row="1"
+                    Grid.Column="3"
+                    Clicked="OnOperatorClicked"
+                    Style="{StaticResource OperatorButtonStyle}"
+                    Text="x" />
+            <Button Grid.Row="2"
+                    Grid.Column="0"
+                    Clicked="OnNumberClicked"
+                    Style="{StaticResource NumerButtonStyle}"
+                    Text="4" />
+            <Button Grid.Row="2"
+                    Grid.Column="1"
+                    Clicked="OnNumberClicked"
+                    Style="{StaticResource NumerButtonStyle}"
+                    Text="5" />
+            <Button Grid.Row="2"
+                    Grid.Column="2"
+                    Clicked="OnNumberClicked"
+                    Style="{StaticResource NumerButtonStyle}"
+                    Text="6"/>
+            <Button Grid.Row="2"
+                    Grid.Column="3"
+                    Clicked="OnOperatorClicked"
+                    Style="{StaticResource OperatorButtonStyle}"
+                    Text="-" />
+            <Button Grid.Row="3"
+                    Grid.Column="0"
+                    Clicked="OnNumberClicked"
+                    Style="{StaticResource NumerButtonStyle}"
+                    Text="1"/>
+            <Button Grid.Row="3"
+                    Grid.Column="1"
+                    Clicked="OnNumberClicked"
+                    Style="{StaticResource NumerButtonStyle}"
+                    Text="2" />
+            <Button Grid.Row="3"
+                    Grid.Column="2"
+                    Clicked="OnNumberClicked"
+                    Style="{StaticResource NumerButtonStyle}"
+                    Text="3" />
+            <Button Grid.Row="3"
+                    Grid.Column="3"
+                    Clicked="OnOperatorClicked"
+                    Style="{StaticResource OperatorButtonStyle}"
+                    Text="+" />
+            <Button Grid.Row="4"
+                    Grid.Column="0"
+                    Clicked="OnNumberClicked"
+                    Style="{StaticResource NumerButtonStyle}"
+                    Text="0" />
+            <Button Grid.Row="4"
+                    Grid.Column="1"
+                    Clicked="OnNumberClicked"
+                    Style="{StaticResource NumerButtonStyle}"
+                    Text="." />
+            <Button Grid.Row="4"
+                    Grid.Column="2"
+                    FontSize="25"
+                    FontAttributes="Bold"
+                    Clicked="OnDeleteClicked"
+                    Style="{StaticResource NumerButtonStyle}"
+                    Text="DEL"/>
+            <Button Grid.Row="4"
+                    Grid.Column="3"
+                    Clicked="OnCalculateClicked"
+                    Style="{StaticResource OperatorButtonStyle}"
+                    Text="=" />
+        </Grid>   
+    </Grid>
+        
+
+</ContentPage>
